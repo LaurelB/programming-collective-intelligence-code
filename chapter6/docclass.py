@@ -1,8 +1,9 @@
+import codecs
 import re
 import math
 
 def getwords(doc):
-    splitter = re.compile('\\W*')
+    splitter = re.compile('\\W*', re.UNICODE)
     words = [s.lower() for s in splitter.split(doc)
              if len(s) > 2 and len(s) < 20]
     
@@ -45,6 +46,9 @@ class classifier:
     
     def categories(self):
         return self.cc.keys()
+
+    def features(self):
+        return self.fc.keys()
     
     def train(self, item, cat):
         features = self.getfeatures(item)
